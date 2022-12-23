@@ -1,0 +1,19 @@
+.swiper_slide {
+  background-color: var(--color-blue);
+  color: var(--color-primary);
+  padding: 30px 0px;
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.our_standard_wrapper {
+  padding-top: calc(3rem + 1vh);
+  padding-bottom: calc(4rem + 1vh);
+}

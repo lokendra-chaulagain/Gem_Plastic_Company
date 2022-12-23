@@ -1,0 +1,9 @@
+.position_div {
+  position: relative;
+}
+
+.carousel_caption_div {
+  position: absolute;
+  top: 30%;
+  color: var(--color-blue);
+}

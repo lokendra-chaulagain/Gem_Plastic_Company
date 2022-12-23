@@ -1,0 +1,52 @@
+.career_page_wrapper {
+  padding-top: calc(14rem + 1vh);
+  padding-bottom: calc(1rem + 1vh);
+}
+
+.career_hero_heading {
+  font-size: calc(2.5rem + 1.5vw);
+  font-weight: 700;
+  margin-top: -100px !important;
+  background-image: url("../../assets//dot.png");
+}
+
+.career_hero_para {
+  font-size: calc(0.8rem + 0.8vw);
+  padding-top: 15px !important;
+}
+
+.left_hero_section {
+  background-image: url("../../assets//dot.png");
+  color: var(--color-blue);
+}
+
+.red_span {
+  color: var(--color-red);
+}
+
+.career_hero_wrapper {
+  padding-bottom: calc(1.5rem + 1vh);
+}
+
+.job_card_wrapper {
+  padding-top: calc(4rem + 1vh);
+  padding-bottom: calc(0.1rem + 2vh);
+}
+
+.hero_image_div {
+  position: relative;
+  height: 400px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .hero_image_div {
+    height: 270px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .hero_image_div {
+    height: 300px;
+  }
+}
+

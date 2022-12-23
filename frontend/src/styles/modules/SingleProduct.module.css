@@ -1,0 +1,23 @@
+.radio_button_label {
+  border-radius: 0px !important;
+  border-color: var(--color-blue) !important;
+  color: var(--color-blue) !important;
+  font-weight: 600 !important;
+}
+
+.radio_button:check {
+  background-color: red !important;
+}
+
+.single_product_image_div {
+  position: relative;
+  height: 400px;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .single_product_image_div {
+    position: relative;
+    height: 220px;
+  }
+}

@@ -1,0 +1,29 @@
+.item {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 50px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.item:hover {
+  transform: translateY(-10px);
+}
+
+.our_partner_wrapper {
+  padding-top: calc(3rem + 1vh);
+  padding-bottom: calc(4rem + 1vh);
+}
+
+.our_partner_avatar_div {
+  position: relative;
+  height: 65px;
+  width: 65px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+

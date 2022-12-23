@@ -1,0 +1,9 @@
+.about_product_section {
+  padding-top: calc(3rem + 1vh);
+  padding-bottom: calc(4rem + 1vh);
+}
+
+.image_section{
+  padding-top: calc(3rem + 1vh);
+  /* padding-bottom: calc(4rem + 1vh); */
+}

@@ -1,0 +1,25 @@
+.about_page_wrapper {
+  padding-top: calc(14rem + 1vh);
+  padding-bottom: calc(1rem + 1vh);
+}
+
+.about_icon{
+  color: var(--color-red);
+}
+
+.each_review_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial_wrapper {
+  padding-top: calc(5rem + 1vh);
+  padding-bottom: calc(1rem + 1vh);
+}
+
+@media only screen and (min-width: 1000px) {
+  .each_review_div {
+    padding: 0px 200px !important;
+  }
+}
