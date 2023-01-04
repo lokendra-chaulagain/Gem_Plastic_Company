@@ -13,22 +13,23 @@ function Product() {
   const deleteProduct = async (id: any) => {
     try {
       let res = await CallApi.deleteData(`product/${id}`);
-
       setIsUpdated(1);
       deleteSuccess();
-      console.log("Product deleted success");
     } catch (error) {
       console.log(error);
       somethingWentWrong();
     }
   };
 
+  const [page, setPage] = useState(1);
+  const [productTotalCount, setProductTotalCount] = useState(0);
+  const [currentCount, setCurrentCount] = useState(8);
   const [products, setProducts] = useState([]);
   const fetchAllProduct = async () => {
     try {
-      let res = await CallApi.fetchData(`product`);
-
-      setProducts(res);
+      let res = await CallApi.fetchData(`product/forAdmin?page=${page}&size=${8}`);
+      setProducts(res.products);
+      setProductTotalCount(res.totalProductCount);
       setIsUpdated(5);
     } catch (error) {
       console.log(error);
@@ -37,7 +38,17 @@ function Product() {
 
   useEffect(() => {
     fetchAllProduct();
-  }, [isUpdated]);
+  }, [isUpdated, page]);
+
+  const handleNext = () => {
+    setPage(page + 1);
+    setCurrentCount(currentCount + 8);
+  };
+
+  const handlePrev = () => {
+    setPage(page - 1);
+    setCurrentCount(currentCount - 8);
+  };
 
   return (
     <>
@@ -46,6 +57,30 @@ function Product() {
         products={products}
         deleteProduct={deleteProduct}
       />
+
+      <div
+        className="d-flex justify-content-end me-5"
+        style={{ marginTop: "-40px" }}>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className={currentCount > 8 ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination"
+                onClick={handlePrev}>
+                Previous
+              </a>
+            </li>
+
+            <li className={productTotalCount - 1 >= currentCount ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination "
+                onClick={handleNext}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

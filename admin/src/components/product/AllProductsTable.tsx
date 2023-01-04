@@ -6,10 +6,7 @@ import { Button } from "@mui/material";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Image from "next/image";
 
-
 export default function AllProductsTable({ products, deleteProduct }: any) {
-  console.log(products[12]);
-
   return (
     <>
       <div className="d-flex align-items-center justify-content-between  ">
@@ -48,22 +45,22 @@ export default function AllProductsTable({ products, deleteProduct }: any) {
                   <th scope="row">{index + 1}</th>
                   <td>{product.name}</td>
                   <td>
-                  <a
-                    className="d-flex "
-                    href={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${product.image}`}>
-                    ​
-                    <div className="banner_table_image_div">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${product.image}`}
-                        quality={50}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-1"
-                        alt="myimage"
-                      />
-                    </div>
-                  </a>
-                </td>
+                    <a
+                      className="d-flex "
+                      href={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${product.image}`}>
+                      ​
+                      <div className="banner_table_image_div">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${product.image}`}
+                          quality={50}
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-1"
+                          alt="myimage"
+                        />
+                      </div>
+                    </a>
+                  </td>
                   <td className="small">
                     <div className="dropdown">
                       <button

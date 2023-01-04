@@ -29,7 +29,7 @@ const Id = () => {
   const [singleProduct, setSingleProduct] = useState({});
   const fetchSingleProduct = async () => {
     try {
-      let res = await CallApi.EditData(`product/${id}`);
+      let res = await CallApi.EditData(`product/single/${id}`);
       setSingleProduct(res);
       setIsUpdated(8);
     } catch (error) {

@@ -303,3 +303,11 @@ input::-webkit-input-placeholder {
   box-shadow: none !important;
   border: 1px solid #236eb9;
 }
+
+.next_prev_pagination {
+  cursor: pointer !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
