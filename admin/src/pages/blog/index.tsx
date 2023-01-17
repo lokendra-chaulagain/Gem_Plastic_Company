@@ -1,15 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import BlogTable from "../../components/blog/BlogTable";
 import Header from "../../components/Header";
-import axios from "axios";
+import Link from "next/link";
+import { Button } from "@mui/material";
 import { MiscellaneousContext } from "../../../context/MiscellaneousContext";
 import Api from "../../../service/Api.js";
+import TableHeading from "../../components/TableHeading";
 let CallApi = new Api();
 
 function Blog() {
   const { deleteSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
   const [isUpdated, setIsUpdated] = useState(0);
   const [blogs, setBlogs] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [sort, setSort] = useState("latest");
 
   const [page, setPage] = useState(1);
   const [blogTotalCount, setBlogTotalCount] = useState(0);
@@ -27,8 +31,7 @@ function Blog() {
 
   const fetchAllBlogs = async () => {
     try {
-      let res = await CallApi.fetchData(`blog`);
-
+      let res = await CallApi.fetchData(`blog?page=${page}&size=${5}&search=${searchInput}&sort=${sort}`);
       setBlogs(res);
       setIsUpdated(1);
     } catch (error) {
@@ -38,7 +41,7 @@ function Blog() {
 
   useEffect(() => {
     fetchAllBlogs();
-  }, [isUpdated]);
+  }, [isUpdated, searchInput, sort]);
 
   const deleteBlog = async (id: any) => {
     try {
@@ -55,6 +58,39 @@ function Blog() {
   return (
     <>
       <Header pageTitle={"Blogs"} />
+
+      <div className="d-flex align-items-center justify-content-between ">
+        <TableHeading heading={"All Blogs "} />
+
+        <input
+          type="text"
+          className="form-control w-25 custom_input_search"
+          id="searchInput"
+          placeholder="Search By Email"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+
+        <select
+          onChange={(e) => setSort(e.target.value)}
+          className="form-select custom_input_search w-25"
+          aria-label="Sort Select">
+          <option
+            value="latest"
+            selected>
+            Latest
+          </option>
+          <option value="oldest">Oldest</option>
+        </select>
+        <Link href={"/blog/create"}>
+          <Button
+            size="large"
+            className="customCard px-4">
+            Add New
+          </Button>
+        </Link>
+      </div>
+
       <BlogTable
         blogs={blogs}
         deleteBlog={deleteBlog}
