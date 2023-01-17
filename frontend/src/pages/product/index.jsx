@@ -6,21 +6,26 @@ import OurServices from "../../components/OurServices";
 import ProductSection from "../../components/ProductSection";
 import SectionHeader from "../../components/SectionHeader";
 import { useForm } from "react-hook-form";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Product() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const searchQuery=watch()
-  console.log(searchQuery)
-
-
-
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const searchQuery = watch();
+  console.log(searchQuery);
 
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1)
   const fetchAllProduct = async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product/forAdmin?page=${page}`);
+      setPage(page+1)
       setProducts(
-        res.data.sort((p1, p2) => {
+        res.data.products.sort((p1, p2) => {
           return new Date(p2.createdAt) - new Date(p1.createdAt);
         })
       );
@@ -78,12 +83,6 @@ export default function Product() {
         <HeroCarousel banners={banners} />
       </div>
 
-
-
-
-
-
-
       {/* <FilterSection
         colors={colors}
         sizes={sizes}
@@ -96,7 +95,7 @@ export default function Product() {
           description="Our latest item collection of 2021d "
         />
 
-<input
+        {/* <input
           autoComplete="off"
           type="email"
           className="form-control w-25 py-2 nav_search rounded-1"
@@ -104,8 +103,19 @@ export default function Product() {
           placeholder="Search"
           aria-describedby="emailHelp"
           {...register("query", { required: true })}
-        />
-        <ProductSection products={products} />
+        /> */}
+        <InfiniteScroll
+          dataLength={products.length} 
+          next={fetchAllProduct}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }>
+          <ProductSection products={products} />
+        </InfiniteScroll>
       </div>
       <OurServices services={services} />
     </div>

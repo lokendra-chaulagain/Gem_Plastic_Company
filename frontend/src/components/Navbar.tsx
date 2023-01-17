@@ -41,14 +41,14 @@ const Navbar = () => {
           alt=" "
         />
 
-        <input
+        {/* <input
           autoComplete="off"
           type="email"
           className="form-control w-25 py-2 nav_search rounded-1"
           id="exampleInputEmail1"
           placeholder="Search"
           aria-describedby="emailHelp"
-        />
+        /> */}
 
         <div
           className="d-flex gap-5 d-none d-lg-block "
