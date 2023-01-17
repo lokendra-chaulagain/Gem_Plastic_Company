@@ -6,12 +6,11 @@ import TableHeading from "../TableHeading";
 import AddEventBannerDialog from "./AddEventBannerDialog";
 import Image from "next/image";
 
-
-export default function EventBannerTable({ eventBanners, deleteEventBanner, setIsUpdated }: any) {
+export default function EventBannerTable({ eventBanners, eventBannerTotalCount, deleteEventBanner, setIsUpdated }: any) {
   return (
     <>
       <div className="d-flex align-items-center  ">
-        <TableHeading heading={"Event Banner"} />
+        <TableHeading heading={`All Event Banner (${eventBannerTotalCount})`} />
         <AddEventBannerDialog setIsUpdated={setIsUpdated} />
       </div>
 
@@ -33,22 +32,22 @@ export default function EventBannerTable({ eventBanners, deleteEventBanner, setI
                   className="customPrimaryTxtColor custom_table_hover ">
                   <th scope="row">{index + 1}</th>
                   <td>
-                  <a
-                    className="d-flex "
-                    href={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${eventBanner.image}`}>
-                    ​
-                    <div className="banner_table_image_div">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${eventBanner.image}`}
-                        quality={50}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-1"
-                        alt="myimage"
-                      />
-                    </div>
-                  </a>
-                </td>
+                    <a
+                      className="d-flex "
+                      href={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${eventBanner.image}`}>
+                      ​
+                      <div className="banner_table_image_div">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL_SECURE}${eventBanner.image}`}
+                          quality={50}
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-1"
+                          alt="myimage"
+                        />
+                      </div>
+                    </a>
+                  </td>
                   {eventBanner.status == 1 && <td className="active_status_green_color">Active</td>}
                   {eventBanner.status == 0 && <td className="active_status_red_color">InActive</td>}
                   <td>

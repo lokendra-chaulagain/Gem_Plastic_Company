@@ -84,8 +84,16 @@ const getContactById = async (req, res, next) => {
 
 const getAllContact = async (req, res, next) => {
   try {
-    const allContact = await Contact.find();
-    res.status(200).json(allContact);
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 5;
+    const skip = (page - 1) * size;
+
+    const totalMailCount = await Contact.countDocuments();
+    const allContact = await Contact.find().skip(skip).limit(size);
+    res.status(200).json({
+      totalMailCount,
+      allContact,
+    });
   } catch (error) {
     return next(createError(500, "Server Error while getting all aboutUsContent !!!"));
   }

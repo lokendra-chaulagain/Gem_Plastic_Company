@@ -4,13 +4,17 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import AddReviewDialog from "./AddReviewDialog";
 import Image from "next/image";
+import TableHeading from "../TableHeading";
 
-
-export default function ReviewTable({ deleteReview, reviews, setIsUpdated }: any) {
+export default function ReviewTable({ deleteReview, reviews, reviewTotalCount, setIsUpdated }: any) {
   return (
     <>
-      <AddReviewDialog setIsUpdated={setIsUpdated} />
-      <div className="customCard mt-2 ">
+      <div className="d-flex align-items-center  justify-content-between ">
+        <TableHeading heading={`All subscribers(${reviewTotalCount})`} />
+        <AddReviewDialog setIsUpdated={setIsUpdated} />
+      </div>
+
+      <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>
             <tr className="customPrimaryTxtColor">
@@ -25,7 +29,7 @@ export default function ReviewTable({ deleteReview, reviews, setIsUpdated }: any
             {reviews &&
               reviews.map((review: any, index: any) => (
                 <tr className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">1</th>
+                  <th scope="row">{index + 1}</th>
                   <td>{review.name}</td>
                   <td>
                     <a

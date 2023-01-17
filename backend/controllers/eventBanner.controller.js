@@ -58,8 +58,13 @@ const getEventBannerById = async (req, res, next) => {
 
 const getAllEventBanner = async (req, res, next) => {
   try {
-    const allService = await EventBanner.find();
-    res.status(200).json(allService);
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 5;
+    const skip = (page - 1) * size;
+
+    const totalEventBannerCount = await EventBanner.countDocuments();
+    const allEventBanner = await EventBanner.find().skip(skip).limit(size);
+    res.status(200).json({totalEventBannerCount,allEventBanner});
   } catch (error) {
     return next(createError(500, "Server Error while getting all EventBanner !"));
   }

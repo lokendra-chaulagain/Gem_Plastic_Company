@@ -2,10 +2,25 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const getUser = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    jwt.verify(token, envSecretKey, (err, payload) => {
+      if (err) {
+        res.status(401).json({ message: "Unauthorized" });
+      } else {
+        res.json({ email: payload.email });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 const registerUser = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-
     if (user) {
       res.status(409).json({
         error: true,
@@ -16,8 +31,8 @@ const registerUser = async (req, res) => {
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
       const user = new User({
+        fullName: req.body.fullName,
         email: req.body.email,
-        role: req.body.role,
         password: hashedPassword,
       });
 
@@ -38,8 +53,7 @@ const loginUser = async (req, res) => {
       const verifiedPassword = await bcrypt.compare(req.body.password, user.password);
 
       if (verifiedPassword) {
-        const accessToken = jwt.sign({ id: user.id, role: user.role }, "envSecretKey");
-        //  { expiresIn: "30s" }
+        const accessToken = jwt.sign({ id: user.id, role: user.role }, "envSecretKey", { expiresIn: "30s" });
         res.json({
           // ...user,
           id: user._id,
@@ -75,7 +89,7 @@ const deleteUser = async (req, res) => {
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log(authHeader)
+  console.log(authHeader);
 
   if (authHeader) {
     // const token = authHeader.split(" ")[1];
@@ -100,4 +114,4 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, deleteUser, logoutUser, verifyToken };
+export { registerUser, loginUser, deleteUser, logoutUser, verifyToken ,getUser};

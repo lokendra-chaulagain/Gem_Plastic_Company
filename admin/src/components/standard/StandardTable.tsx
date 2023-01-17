@@ -3,15 +3,17 @@ import Link from "next/link";
 import AddStandardDialog from "./AddStandardDialog";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import TableHeading from "../TableHeading";
 
-export default function StandardTable({ standards, deleteStandard, setIsUpdated }: any) {
+export default function StandardTable({ standards, deleteStandard, standardTotalCount, setIsUpdated }: any) {
   return (
     <>
-      <div className="d-flex align-items-center ">
+      <div className="d-flex align-items-center justify-content-between">
+        <TableHeading heading={`All Standards(${standardTotalCount})`} />
         <AddStandardDialog setIsUpdated={setIsUpdated} />
       </div>
 
-      <div className="customCard mt-2 ">
+      <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>
             <tr className="customPrimaryTxtColor">

@@ -14,7 +14,7 @@ export const MailContextProvider = ({ children }) => {
   const fetchAllMails = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/contact`);
-      setMails(res.data);
+      setMails(res.allContact);
       setIsUpdated(0);
     } catch (error) {
       console.log(error);

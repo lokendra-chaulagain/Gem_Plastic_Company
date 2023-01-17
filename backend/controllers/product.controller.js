@@ -61,70 +61,17 @@ const getProductById = async (req, res, next) => {
   }
 };
 
-// const getAllProduct = async (req, res, next) => {
-//   try {
-//     let allService = [];
-//     let featuredProducts = [];
-//     let topSellingProducts = [];
-
-//     if (req.query.featured) {
-//       featuredProducts = await Product.find({ featured: req.query.featured });
-//       res.status(200).json(featuredProducts.slice(0, 9));
-//     } else if (req.query.category) {
-//       allService = await Product.find({ category: req.query.category });
-//     } else if (req.query.topSelling) {
-//       topSellingProducts = await Product.find({ topSelling: req.query.topSelling });
-//       res.status(200).json(topSellingProducts.slice(0, 9));
-//     } else if (req.query.url) {
-//       allService = await Product.find({ url: req.query.url });
-//     } else if (req.query.slug) {
-//       let cat = await Category.findOne({ url: `${req.query.slug}` });
-//       allService = await Product.find({ category: cat._id });
-
-//       // allService = await Product.aggregate([
-//       //   {
-//       //     $lookup:{
-//       //       from: 'categories',
-//       //       localField: 'category',
-//       //       foreignField:'_id' ,
-//       //       as: 'categorys'
-//       //     }
-//       //   },{
-//       //     $project:{
-//       //       'categorys._id':0,
-//       //       'categorys.url':0,
-
-//       //     }
-//       //   }
-//       // ]);
-//     } else if (req.query.id && req.query.color && req.query.size) {
-//       // let cat = await Category.findOne({ url: `${req.query.slug}` });
-//       allService = await Product.find({ $and: [{ category: req.query.id }, { color: req.query.color }, { size: req.query.size }] });
-//     } else {
-//       allService = await Product.find();
-//     }
-//     res.status(200).json(allService);
-//     // res.status(200).json(featuredProducts.slice(0,9));
-//   } catch (error) {
-//     return next(createError(500, "Server Error while getting all Product !"));
-//   }
-// };
-
 const getAllProduct = async (req, res, next) => {
   try {
     const q = req.query.q;
 
     const keys = ["name"];
-    let allService = [];   
-    if(req.query.search){
-      let name=new RegExp(q,'i')
-      allService = await Product.find({name:name,description:q});
-      // $text: { $search: "java coffee shop" } }
-    return  res.status(200).json(allService);
-
+    let allService = [];
+    if (req.query.search) {
+      let name = new RegExp(q, "i");
+      allService = await Product.find({ name: name, description: q });
+      return res.status(200).json(allService);
     }
- 
-  
 
     let featuredProducts = [];
     let topSellingProducts = [];
@@ -142,9 +89,7 @@ const getAllProduct = async (req, res, next) => {
     } else if (req.query.slug) {
       let cat = await Category.findOne({ url: `${req.query.slug}` });
       allService = await Product.find({ category: cat._id });
-
     } else if (req.query.id && req.query.color && req.query.size) {
-      // let cat = await Category.findOne({ url: `${req.query.slug}` });
       allService = await Product.find({ $and: [{ category: req.query.id }, { color: req.query.color }, { size: req.query.size }] });
     } else {
       allService = await Product.find();
@@ -155,6 +100,25 @@ const getAllProduct = async (req, res, next) => {
   }
 };
 
+const getAllProductForAdmin = async (req, res, next) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 8;
+    const skip = (page - 1) * size;
 
+    const totalProductCount = await Product.countDocuments();
+    const products = await Product.find().skip(skip).limit(size);
 
-export { createProduct, updateProduct, deleteProduct, getProductById, getAllProduct };
+    res.status(200).json({
+      products,
+      totalProductCount,
+      page,
+      size,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+};
+
+export { createProduct, updateProduct, deleteProduct, getProductById, getAllProduct ,getAllProductForAdmin};

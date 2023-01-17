@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { MiscellaneousContext } from "../../context/MiscellaneousContext";
 import Header from "../components/Header";
@@ -7,8 +6,12 @@ import Api from "../../service/Api.js";
 let CallApi = new Api();
 
 function Subscriber() {
-  const { deleteSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
+  const { deleteSuccess } = useContext(MiscellaneousContext);
   const [isUpdated, setIsUpdated] = useState(0);
+  const [subscribers, setSubscribers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [subscriberTotalCount, setSubscriberTotalCount] = useState(0);
+  const [currentCount, setCurrentCount] = useState(5);
 
   const deleteSubscriber = async (id: any) => {
     try {
@@ -18,25 +21,33 @@ function Subscriber() {
       console.log("Subscriber deleted success");
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
-  const [subscribers, setSubscribers] = useState([]);
+  const handleNext = () => {
+    setPage(page + 1);
+    setCurrentCount(currentCount + 5);
+  };
+
+  const handlePrev = () => {
+    setPage(page - 1);
+    setCurrentCount(currentCount - 5);
+  };
+
   const fetchAllSubscriber = async () => {
     try {
-      let res = await CallApi.fetchData(`subscriber`);
-      res && setSubscribers(res);
+      let res = await CallApi.fetchData(`subscriber?page=${page}&size=${5}`);
+      res && setSubscribers(res.allSubscriber);
+      setSubscriberTotalCount(res.totalSubscriberCount);
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
   useEffect(() => {
     fetchAllSubscriber();
-  }, [isUpdated]);
+  }, [isUpdated, page]);
 
   return (
     <>
@@ -44,7 +55,31 @@ function Subscriber() {
       <SubscriberTable
         deleteSubscriber={deleteSubscriber}
         subscribers={subscribers}
+        subscriberTotalCount={subscriberTotalCount}
       />
+      <div
+        className="d-flex justify-content-end me-5"
+        style={{ marginTop: "-40px" }}>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className={currentCount > 5 ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination"
+                onClick={handlePrev}>
+                Previous
+              </a>
+            </li>
+
+            <li className={subscriberTotalCount - 1 >= currentCount ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination "
+                onClick={handleNext}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

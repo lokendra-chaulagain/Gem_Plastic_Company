@@ -21,21 +21,35 @@ function Mail() {
     }
   };
 
+  const [page, setPage] = useState(1);
+  const [mailTotalCount, setMailTotalCount] = useState(0);
+  const [currentCount, setCurrentCount] = useState(5);
+
+  const handleNext = () => {
+    setPage(page + 1);
+    setCurrentCount(currentCount + 5);
+  };
+
+  const handlePrev = () => {
+    setPage(page - 1);
+    setCurrentCount(currentCount - 5);
+  };
+
   const [mails, setMails] = useState([]);
   const fetchAllMail = async () => {
     try {
-      let res = await CallApi.fetchData(`contact`);
-      setMails(res);
+      let res = await CallApi.fetchData(`contact?page=${page}&size=${5}`);
+      setMails(res.allContact);
+      setMailTotalCount(res.totalMailCount);
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
   useEffect(() => {
     fetchAllMail();
-  }, [isUpdated]);
+  }, [isUpdated, page]);
 
   return (
     <>
@@ -43,7 +57,29 @@ function Mail() {
       <MailTable
         mails={mails}
         deleteMail={deleteMail}
+        mailTotalCount={mailTotalCount}
       />
+      <div className="d-flex justify-content-end me-5">
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className={currentCount > 5 ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination"
+                onClick={handlePrev}>
+                Previous
+              </a>
+            </li>
+
+            <li className={mailTotalCount - 1 >= currentCount ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination "
+                onClick={handleNext}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }
