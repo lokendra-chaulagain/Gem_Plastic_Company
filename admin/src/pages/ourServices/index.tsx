@@ -22,12 +22,26 @@ function Portfolio() {
     }
   };
 
+  const [page, setPage] = useState(1);
+  const [serviceTotalCount, setServiceTotalCount] = useState(0);
+  const [currentCount, setCurrentCount] = useState(5);
+
+  const handleNext = () => {
+    setPage(page + 1);
+    setCurrentCount(currentCount + 5);
+  };
+
+  const handlePrev = () => {
+    setPage(page - 1);
+    setCurrentCount(currentCount - 5);
+  };
+
   const [services, setServices] = useState([]);
   const fetchAllService = async () => {
     try {
-      let res = await CallApi.fetchData(`service`);
-
-      setServices(res);
+      let res = await CallApi.fetchData(`service?page=${page}&size=${5}`);
+      setServices(res.allService);
+      setServiceTotalCount(res.totalServiceCount);
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
@@ -37,7 +51,7 @@ function Portfolio() {
 
   useEffect(() => {
     fetchAllService();
-  }, [isUpdated]);
+  }, [isUpdated, page]);
 
   return (
     <>
@@ -46,7 +60,29 @@ function Portfolio() {
         services={services}
         deleteService={deleteService}
         setIsUpdated={setIsUpdated}
+        serviceTotalCount={serviceTotalCount}
       />
+      <div className="d-flex justify-content-end me-5">
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className={currentCount > 5 ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination"
+                onClick={handlePrev}>
+                Previous
+              </a>
+            </li>
+
+            <li className={serviceTotalCount - 1 >= currentCount ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination "
+                onClick={handleNext}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

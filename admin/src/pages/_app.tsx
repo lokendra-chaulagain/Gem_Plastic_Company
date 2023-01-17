@@ -29,14 +29,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <MiscellaneousContextProvider>
         {accessToken ? (
-          <div className="customBg h100">
+          <div className="customBg h100 ">
             <Topbar />
             <div className="row">
               <div className=" col-2 customLeftBar">
                 <LeftAppBar />
               </div>
 
-              <div className="col-10 right_side_bg">
+              <div className="col-10 right_side_bg pe-3">
                 <Component {...pageProps} />
               </div>
             </div>

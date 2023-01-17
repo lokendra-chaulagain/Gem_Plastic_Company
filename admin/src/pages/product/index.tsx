@@ -56,11 +56,9 @@ function Product() {
       <AllProductsTable
         products={products}
         deleteProduct={deleteProduct}
+        productTotalCount={productTotalCount}
       />
-
-      <div
-        className="d-flex justify-content-end me-5"
-        style={{ marginTop: "-40px" }}>
+      <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             <li className={currentCount > 8 ? "page-item" : "disabled"}>

@@ -6,11 +6,13 @@ import { Button } from "@mui/material";
 import { format } from "timeago.js";
 import Image from "next/image";
 import parse from "html-react-parser";
+import TableHeading from "../TableHeading";
 
 export default function VacancyTable({ vacancies, deleteVacancy }: any) {
   return (
     <>
-      <div className="d-flex align-items-center justify-content-end ">
+      <div className="d-flex align-items-center justify-content-between ">
+        <TableHeading heading={"All Vacancies "} />
         <Link href={"/vacancy/create"}>
           <Button
             size="large"
@@ -20,7 +22,7 @@ export default function VacancyTable({ vacancies, deleteVacancy }: any) {
         </Link>
       </div>
 
-      <div className="customCard mt-2 ">
+      <div className="customCard mt-2 mb-2 ">
         <table className="table  ">
           <thead>
             <tr className="customPrimaryTxtColor">
@@ -63,7 +65,7 @@ export default function VacancyTable({ vacancies, deleteVacancy }: any) {
                   <td>{vacancy.location}</td>
                   <td>{vacancy.qualification}</td>
                   <td>{vacancy.jobType}</td>
-                  <td>{parse(vacancy.description.substring(0,30))}</td>
+                  <td>{parse(vacancy.description.substring(0, 30))}</td>
                   <td className="small">{format(vacancy.createdAt)}</td>
                   <td>
                     <div className="d-flex ">

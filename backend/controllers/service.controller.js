@@ -42,8 +42,16 @@ const getServiceById = async (req, res, next) => {
 
 const getAllService = async (req, res, next) => {
   try {
-    const allService = await Service.find();
-    res.status(200).json(allService);
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 5;
+    const skip = (page - 1) * size;
+
+    const totalServiceCount = await Service.countDocuments();
+    const allService = await Service.find().skip(skip).limit(size);
+    res.status(200).json({
+      totalServiceCount,
+      allService,
+    });
   } catch (error) {
     return next(createError(500, "Server Error while getting all Service !"));
   }

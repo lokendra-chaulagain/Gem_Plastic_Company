@@ -10,7 +10,7 @@ export default function ReviewTable({ deleteReview, reviews, reviewTotalCount, s
   return (
     <>
       <div className="d-flex align-items-center  justify-content-between ">
-        <TableHeading heading={`All subscribers(${reviewTotalCount})`} />
+        <TableHeading heading={`All Reviews (${reviewTotalCount})`} />
         <AddReviewDialog setIsUpdated={setIsUpdated} />
       </div>
 

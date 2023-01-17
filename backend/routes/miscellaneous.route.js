@@ -1,10 +1,8 @@
 import { Router } from "express";
 const router = Router();
-import { getAll } from "../controllers/miscellaneous.controller.js";
-import { verifyToken } from "../controllers/user.controller.js";
+import { getAll, getAllCountData } from "../controllers/miscellaneous.controller.js";
 
-router.get("/",verifyToken, getAll);
-// router.get("/", getAllCategoryProducts);
-
+router.get("/", getAll);
+router.get("/getAllCountData", getAllCountData);
 
 export default router;

@@ -21,6 +21,20 @@ function Vacancy() {
     }
   };
 
+  const [page, setPage] = useState(1);
+  const [vacancyTotalCount, setVacancyTotalCount] = useState(0);
+  const [currentCount, setCurrentCount] = useState(5);
+
+  const handleNext = () => {
+    setPage(page + 1);
+    setCurrentCount(currentCount + 5);
+  };
+
+  const handlePrev = () => {
+    setPage(page - 1);
+    setCurrentCount(currentCount - 5);
+  };
+
   const [vacancies, setVacancies] = useState([]);
   const fetchAllVacancy = async () => {
     try {
@@ -44,6 +58,27 @@ function Vacancy() {
         setIsUpdated={setIsUpdated}
         deleteVacancy={deleteVacancy}
       />
+      <div className="d-flex justify-content-end me-5">
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className={currentCount > 5 ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination"
+                onClick={handlePrev}>
+                Previous
+              </a>
+            </li>
+
+            <li className={vacancyTotalCount - 1 >= currentCount ? "page-item" : "disabled"}>
+              <a
+                className="page-link rounded-0 h6 next_prev_pagination "
+                onClick={handleNext}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

@@ -57,9 +57,7 @@ function Subscriber() {
         subscribers={subscribers}
         subscriberTotalCount={subscriberTotalCount}
       />
-      <div
-        className="d-flex justify-content-end me-5"
-        style={{ marginTop: "-40px" }}>
+      <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             <li className={currentCount > 5 ? "page-item" : "disabled"}>

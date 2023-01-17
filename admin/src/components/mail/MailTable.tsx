@@ -9,7 +9,7 @@ export default function MailTable({ mails, deleteMail, mailTotalCount }: any) {
   return (
     <>
       <div className="d-flex align-items-center  ">
-        <TableHeading heading={`All Mails(${mailTotalCount})`} />
+        <TableHeading heading={`All Mails (${mailTotalCount})`} />
       </div>
       <div className="customCard mt-2 mb-2">
         <table className="table  ">

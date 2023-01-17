@@ -9,7 +9,7 @@ export default function StandardTable({ standards, deleteStandard, standardTotal
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
-        <TableHeading heading={`All Standards(${standardTotalCount})`} />
+        <TableHeading heading={`All Standards (${standardTotalCount})`} />
         <AddStandardDialog setIsUpdated={setIsUpdated} />
       </div>
 

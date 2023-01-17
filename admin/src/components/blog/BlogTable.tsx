@@ -6,11 +6,13 @@ import { MdDelete } from "react-icons/md";
 import { format } from "timeago.js";
 import Image from "next/image";
 import parse from "html-react-parser";
+import TableHeading from "../TableHeading";
 
 export default function EventTable({ blogs, deleteBlog }: any) {
   return (
     <>
-      <div className="d-flex align-items-center justify-content-end ">
+      <div className="d-flex align-items-center justify-content-between ">
+        <TableHeading heading={"All Blogs "} />
         <Link href={"/blog/create"}>
           <Button
             size="large"
@@ -20,7 +22,7 @@ export default function EventTable({ blogs, deleteBlog }: any) {
         </Link>
       </div>
 
-      <div className="customCard mt-2 ">
+      <div className="customCard mt-2  mb-2">
         <table className="table  ">
           <thead>
             <tr className="customPrimaryTxtColor">

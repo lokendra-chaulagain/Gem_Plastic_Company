@@ -10,7 +10,7 @@ export default function PartnerTable({ deletePartner, partners, partnerTotalCoun
   return (
     <>
       <div className="d-flex align-items-center justify-content-between ">
-        <TableHeading heading={`All Partners(${partnerTotalCount})`} />
+        <TableHeading heading={`All Partners (${partnerTotalCount})`} />
         <AddPartnerDialog setIsUpdated={setIsUpdated} />
       </div>
 

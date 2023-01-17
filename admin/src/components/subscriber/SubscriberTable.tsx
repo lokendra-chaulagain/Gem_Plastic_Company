@@ -7,10 +7,10 @@ export default function SubscriberTable({ deleteSubscriber, subscribers, subscri
   return (
     <>
       <div className="d-flex align-items-center  ">
-        <TableHeading heading={`All subscribers(${subscriberTotalCount})`} />
+        <TableHeading heading={`All subscribers (${subscriberTotalCount})`} />
       </div>
 
-      <div className="customCard mt-2 mb-5 ">
+      <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>
             <tr className="customPrimaryTxtColor">
