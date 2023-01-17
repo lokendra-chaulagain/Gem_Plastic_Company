@@ -11,7 +11,7 @@ export default function about() {
   const fetchAllReview = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/review`);
-      setReviews(res.data);
+      setReviews(res.data.allReview);
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export default function about() {
   const fetchAllPartner = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/partner`);
-      setPartners(res.data);
+      setPartners(res.data.allPartner);
     } catch (error) {
       console.log(error);
     }

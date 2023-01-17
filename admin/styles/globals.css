@@ -188,6 +188,34 @@ body {
   box-shadow: 0 0 0 0.035rem #688eb1 !important;
 }
 
+
+
+.custom_input_search {
+  background-color: #2d3741 !important;
+  color: whitesmoke !important;
+  border-radius: 2px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  border-color: #688eb1 !important;
+
+}
+.custom_input_search::placeholder{
+  color: rgba(245, 245, 245, 0.486) !important;
+}
+
+.custom_input_search:focus {
+  box-shadow: 0 0 0 0.035rem #688eb1 !important;
+}
+
+
+
+
+
+
+
+
+
+
 .overflow_hidden {
   overflow: hidden;
 }

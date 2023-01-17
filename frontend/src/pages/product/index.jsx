@@ -38,7 +38,7 @@ export default function Product() {
   const fetchAllServices = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/service`);
-      setServices(res.data);
+      setServices(res.data.allService);
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +49,7 @@ export default function Product() {
   const fetchAllBanners = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banner`);
-      setBanners(res.data);
+      setBanners(res.data.allBanner);
     } catch (error) {
       console.log(error);
     }

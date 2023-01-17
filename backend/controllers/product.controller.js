@@ -101,13 +101,23 @@ const getAllProduct = async (req, res, next) => {
 };
 
 const getAllProductForAdmin = async (req, res, next) => {
+  const search = req.query.search || "";
+  const sort = req.query.sort || "";
+
+  const query = {
+    name: { $regex: search, $options: "i" },
+  };
+
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 8;
     const skip = (page - 1) * size;
 
     const totalProductCount = await Product.countDocuments();
-    const products = await Product.find().skip(skip).limit(size);
+    const products = await Product.find(query)
+      .skip(skip)
+      .limit(size)
+      .sort({ createdAt: sort == "latest" ? -1 : 1 });
 
     res.status(200).json({
       products,
@@ -117,8 +127,8 @@ const getAllProductForAdmin = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(400).json(error);
+    return next(createError(500, "Server Error while getting all products"));
   }
 };
 
-export { createProduct, updateProduct, deleteProduct, getProductById, getAllProduct ,getAllProductForAdmin};
+export { createProduct, updateProduct, deleteProduct, getProductById, getAllProduct, getAllProductForAdmin };

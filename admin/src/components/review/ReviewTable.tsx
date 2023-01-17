@@ -2,18 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import AddReviewDialog from "./AddReviewDialog";
 import Image from "next/image";
-import TableHeading from "../TableHeading";
 
-export default function ReviewTable({ deleteReview, reviews, reviewTotalCount, setIsUpdated }: any) {
+export default function ReviewTable({ deleteReview, reviews }: any) {
   return (
     <>
-      <div className="d-flex align-items-center  justify-content-between ">
-        <TableHeading heading={`All Reviews (${reviewTotalCount})`} />
-        <AddReviewDialog setIsUpdated={setIsUpdated} />
-      </div>
-
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>

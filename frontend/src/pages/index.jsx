@@ -16,7 +16,7 @@ export default function Index() {
   const fetchAllBanner = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banner`);
-      setBanners(res.data);
+      setBanners(res.data.allBanner);
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +26,7 @@ export default function Index() {
   const fetchAllEventBanner = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/eventBanner`);
-      setEventBanners(res.data);
+      setEventBanners(res.data.allEventBanner);
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +36,7 @@ export default function Index() {
   const fetchAllService = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/service`);
-      setServices(res.data);
+      setServices(res.data.allService);
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +84,7 @@ export default function Index() {
   const fetchAllStandard = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/standard`);
-      setStandards(res.data);
+      setStandards(res.allStandard);
     } catch (error) {
       console.log(error);
     }

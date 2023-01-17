@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import PartnerTable from "../../components/partner/PartnerTable";
 import Api from "../../../service/Api.js";
+import TableHeading from "../../components/TableHeading";
+import AddPartnerDialog from "../../components/partner/AddPartnerDialog";
 let CallApi = new Api();
 
 function Partner() {
@@ -10,6 +12,8 @@ function Partner() {
   const [page, setPage] = useState(1);
   const [partnerTotalCount, setPartnerTotalCount] = useState(0);
   const [currentCount, setCurrentCount] = useState(5);
+  const [searchInput, setSearchInput] = useState("");
+  const [sort, setSort] = useState("latest");
 
   const handleNext = () => {
     setPage(page + 1);
@@ -23,7 +27,7 @@ function Partner() {
 
   const fetchAllPartner = async () => {
     try {
-      let res = await CallApi.fetchData(`partner?page=${page}&size=${5}`);
+      let res = await CallApi.fetchData(`partner?page=${page}&size=${5}&search=${searchInput}&sort=${sort}`);
       setPartners(res.allPartner);
       setPartnerTotalCount(res.totalPartnerCount);
       setIsUpdated(0);
@@ -43,11 +47,38 @@ function Partner() {
 
   useEffect(() => {
     fetchAllPartner();
-  }, [isUpdated, page]);
+  }, [isUpdated, page, searchInput, sort]);
 
   return (
     <>
       <Header pageTitle={"Partners"} />
+
+      <div className="d-flex align-items-center justify-content-between gap-4">
+        <TableHeading heading={`All Partners (${partnerTotalCount})`} />
+
+        <input
+          type="text"
+          className="form-control w-50 custom_input_search"
+          id="searchInput"
+          placeholder="Search By Email"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+
+        <select
+          onChange={(e) => setSort(e.target.value)}
+          className="form-select custom_input_search w-50"
+          aria-label="Sort Select">
+          <option
+            value="latest"
+            selected>
+            Latest
+          </option>
+          <option value="oldest">Oldest</option>
+        </select>
+        <AddPartnerDialog setIsUpdated={setIsUpdated} />
+      </div>
+
       <PartnerTable
         deletePartner={deletePartner}
         partners={partners}

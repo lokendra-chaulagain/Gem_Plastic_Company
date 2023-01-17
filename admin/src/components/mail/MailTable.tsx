@@ -3,14 +3,10 @@ import Link from "next/link";
 import { format } from "timeago.js";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
-import TableHeading from "../TableHeading";
 
-export default function MailTable({ mails, deleteMail, mailTotalCount }: any) {
+export default function MailTable({ mails, deleteMail }: any) {
   return (
     <>
-      <div className="d-flex align-items-center  ">
-        <TableHeading heading={`All Mails (${mailTotalCount})`} />
-      </div>
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>

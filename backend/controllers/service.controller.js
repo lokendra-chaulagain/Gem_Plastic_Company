@@ -41,13 +41,23 @@ const getServiceById = async (req, res, next) => {
 };
 
 const getAllService = async (req, res, next) => {
+  const search = req.query.search || "";
+  const sort = req.query.sort || "";
+
+  const query = {
+    title: { $regex: search, $options: "i" },
+  };
+
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 5;
     const skip = (page - 1) * size;
 
     const totalServiceCount = await Service.countDocuments();
-    const allService = await Service.find().skip(skip).limit(size);
+    const allService = await Service.find(query)
+      .skip(skip)
+      .limit(size)
+      .sort({ createdAt: sort == "latest" ? -1 : 1 });
     res.status(200).json({
       totalServiceCount,
       allService,

@@ -26,7 +26,7 @@ export default function Id() {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/standard`);
 
-      setStandards(res.data);
+      setStandards(res.data.allStandard);
     } catch (error) {
       console.log(error);
     }

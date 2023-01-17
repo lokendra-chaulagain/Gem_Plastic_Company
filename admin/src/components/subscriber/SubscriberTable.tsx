@@ -1,15 +1,10 @@
 import React from "react";
-import TableHeading from "../TableHeading";
 import { MdDelete } from "react-icons/md";
 import { format } from "timeago.js";
 
-export default function SubscriberTable({ deleteSubscriber, subscribers, subscriberTotalCount }: any) {
+export default function SubscriberTable({ deleteSubscriber, subscribers }: any) {
   return (
     <>
-      <div className="d-flex align-items-center  ">
-        <TableHeading heading={`All subscribers (${subscriberTotalCount})`} />
-      </div>
-
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>

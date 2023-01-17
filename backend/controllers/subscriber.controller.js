@@ -60,19 +60,26 @@ const deleteSubscriber = async (req, res, next) => {
 };
 
 const getAllSubscriber = async (req, res, next) => {
+  const search = req.query.search || "";
+  const sort = req.query.sort || "";
+
+  const query = {
+    email: { $regex: search, $options: "i" },
+  };
+
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 5;
     const skip = (page - 1) * size;
 
     const totalSubscriberCount = await Subscriber.countDocuments();
-    const allSubscriber = await Subscriber.find().skip(skip).limit(size);
+    const allSubscriber = await Subscriber.find(query)
+      .skip(skip)
+      .limit(size)
+      .sort({ createdAt: sort == "latest" ? -1 : 1 });
     res.status(200).json({
       totalSubscriberCount,
       allSubscriber,
-      page,
-      size,
-      skip,
     });
   } catch (error) {
     return next(createError(500, "Server Error while getting all Subscriber !!!"));

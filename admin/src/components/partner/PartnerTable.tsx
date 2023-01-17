@@ -1,19 +1,12 @@
 import * as React from "react";
 import Link from "next/link";
-import AddPartnerDialog from "./AddPartnerDialog";
 import { MdDelete } from "react-icons/md";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Image from "next/image";
-import TableHeading from "../TableHeading";
 
-export default function PartnerTable({ deletePartner, partners, partnerTotalCount, setIsUpdated }: any) {
+export default function PartnerTable({ deletePartner, partners }: any) {
   return (
     <>
-      <div className="d-flex align-items-center justify-content-between ">
-        <TableHeading heading={`All Partners (${partnerTotalCount})`} />
-        <AddPartnerDialog setIsUpdated={setIsUpdated} />
-      </div>
-
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>

@@ -3,11 +3,15 @@ import Header from "../../components/Header";
 import StandardTable from "../../components/standard/StandardTable";
 import { MiscellaneousContext } from "../../../context/MiscellaneousContext";
 import Api from "../../../service/Api.js";
+import TableHeading from "../../components/TableHeading";
+import AddStandardDialog from "../../components/standard/AddStandardDialog";
 let CallApi = new Api();
 
 function Standard() {
   const { deleteSuccess, somethingWentWrong } = useContext(MiscellaneousContext);
   const [isUpdated, setIsUpdated] = useState(0);
+  const [searchInput, setSearchInput] = useState("");
+  const [sort, setSort] = useState("latest");
 
   const deleteStandard = async (id: any) => {
     try {
@@ -38,7 +42,7 @@ function Standard() {
   const [standards, setStandards] = useState([]);
   const fetchAllStandard = async () => {
     try {
-      let res = await CallApi.fetchData(`standard?page=${page}&size=${5}`);
+      let res = await CallApi.fetchData(`standard?page=${page}&size=${5}&search=${searchInput}&sort=${sort}`);
       setStandards(res.allStandard);
       setStandardTotalCount(res.totalStandardCount);
       setIsUpdated(0);
@@ -49,11 +53,38 @@ function Standard() {
 
   useEffect(() => {
     fetchAllStandard();
-  }, [isUpdated, page]);
+  }, [isUpdated, page, searchInput, sort]);
 
   return (
     <>
       <Header pageTitle={"Standards"} />
+
+      <div className="d-flex align-items-center justify-content-between gap-4 ">
+        <TableHeading heading={`All Standards (${standardTotalCount})`} />
+
+        <input
+          type="text"
+          className="form-control w-50 custom_input_search"
+          id="searchInput"
+          placeholder="Search By Title"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+
+        <select
+          onChange={(e) => setSort(e.target.value)}
+          className="form-select custom_input_search w-50"
+          aria-label="Sort Select">
+          <option
+            value="latest"
+            selected>
+            Latest
+          </option>
+          <option value="oldest">Oldest</option>
+        </select>
+        <AddStandardDialog setIsUpdated={setIsUpdated} />
+      </div>
+
       <StandardTable
         standards={standards}
         deleteStandard={deleteStandard}

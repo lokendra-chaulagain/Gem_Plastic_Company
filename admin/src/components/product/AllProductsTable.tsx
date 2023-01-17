@@ -1,24 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import TableHeading from "../TableHeading";
 import { MdDelete } from "react-icons/md";
-import { Button } from "@mui/material";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Image from "next/image";
 
 export default function AllProductsTable({ products, deleteProduct, productTotalCount }: any) {
   return (
     <>
-      <div className="d-flex align-items-center justify-content-between  ">
-        <TableHeading heading={`All Products (${productTotalCount})`} />
-        <Link href={"/product/create"}>
-          <Button
-            size="large"
-            className="customCard px-4">
-            Add New
-          </Button>
-        </Link>
-      </div>
+     
 
       <div className="customCard mt-2 mb-2">
         <table className="table  ">

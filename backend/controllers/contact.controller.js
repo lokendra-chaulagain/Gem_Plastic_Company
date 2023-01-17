@@ -83,13 +83,23 @@ const getContactById = async (req, res, next) => {
 };
 
 const getAllContact = async (req, res, next) => {
+  const search = req.query.search || "";
+  const sort = req.query.sort || "";
+
+  const query = {
+    email: { $regex: search, $options: "i" },
+  };
+
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 5;
     const skip = (page - 1) * size;
 
     const totalMailCount = await Contact.countDocuments();
-    const allContact = await Contact.find().skip(skip).limit(size);
+    const allContact = await Contact.find(query)
+      .skip(skip)
+      .limit(size)
+      .sort({ createdAt: sort == "latest" ? -1 : 1 });
     res.status(200).json({
       totalMailCount,
       allContact,

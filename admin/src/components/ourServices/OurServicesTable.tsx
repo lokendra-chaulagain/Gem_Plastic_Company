@@ -1,18 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import AddServiceDialog from "./AddServiceDialog";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import TableHeading from "../TableHeading";
 
-export default function Section5Table({ services, deleteService, serviceTotalCount, setIsUpdated }: any) {
+export default function Section5Table({ services, deleteService, }: any) {
   return (
     <>
-      <div className="d-flex align-items-center  ">
-        <TableHeading heading={`All Services (${serviceTotalCount})`} />
-        <AddServiceDialog setIsUpdated={setIsUpdated} />
-      </div>
-
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>

@@ -1,19 +1,12 @@
 import React from "react";
-import TableHeading from "../TableHeading";
 import Link from "next/link";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import AddBannerDialog from "./AddBannerDialog";
 import Image from "next/image";
 
-export default function BannerTable({ banners, deleteBanner, bannerTotalCount, setIsUpdated }: any) {
+export default function BannerTable({ banners, deleteBanner }: any) {
   return (
     <>
-      <div className="d-flex align-items-center  ">
-        <TableHeading heading={`All Banners (${bannerTotalCount})`} />
-        <AddBannerDialog setIsUpdated={setIsUpdated} />
-      </div>
-
       <div className="customCard mt-2 mb-2 ">
         <table className="table  ">
           <thead>
