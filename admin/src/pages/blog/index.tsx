@@ -94,6 +94,7 @@ function Blog() {
       <BlogTable
         blogs={blogs}
         deleteBlog={deleteBlog}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

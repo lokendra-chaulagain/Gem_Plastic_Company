@@ -90,6 +90,7 @@ function Standard() {
         deleteStandard={deleteStandard}
         setIsUpdated={setIsUpdated}
         standardTotalCount={standardTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

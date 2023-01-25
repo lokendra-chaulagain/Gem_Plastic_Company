@@ -60,7 +60,7 @@ function Partner() {
           type="text"
           className="form-control w-50 custom_input_search"
           id="searchInput"
-          placeholder="Search By Email"
+          placeholder="Search By Name"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
@@ -84,6 +84,7 @@ function Partner() {
         partners={partners}
         setIsUpdated={setIsUpdated}
         partnerTotalCount={partnerTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

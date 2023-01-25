@@ -6,7 +6,7 @@ import TableHeading from "../TableHeading";
 import AddEventBannerDialog from "./AddEventBannerDialog";
 import Image from "next/image";
 
-export default function EventBannerTable({ eventBanners, eventBannerTotalCount, deleteEventBanner, setIsUpdated }: any) {
+export default function EventBannerTable({ eventBanners, eventBannerTotalCount, deleteEventBanner, setIsUpdated,currentCount }: any) {
   return (
     <>
       <div className="d-flex align-items-center  ">
@@ -30,7 +30,7 @@ export default function EventBannerTable({ eventBanners, eventBannerTotalCount, 
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>
                     <a
                       className="d-flex "

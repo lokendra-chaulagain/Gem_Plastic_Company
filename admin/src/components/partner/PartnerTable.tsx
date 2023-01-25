@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Image from "next/image";
 
-export default function PartnerTable({ deletePartner, partners }: any) {
+export default function PartnerTable({ deletePartner, partners ,currentCount}: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2">
@@ -24,7 +24,7 @@ export default function PartnerTable({ deletePartner, partners }: any) {
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>{partner.title}</td>
                   <td>
                     <a
@@ -54,7 +54,7 @@ export default function PartnerTable({ deletePartner, partners }: any) {
 
                       <MdDelete
                         className="delete_button_icon"
-                        onClick={(e) => deletePartner(partner._id)}
+                        onClick={() => deletePartner(partner._id)}
                         aria-label="delete"
                       />
                     </div>

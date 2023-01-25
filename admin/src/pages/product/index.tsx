@@ -95,6 +95,7 @@ function Product() {
         products={products}
         deleteProduct={deleteProduct}
         productTotalCount={productTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

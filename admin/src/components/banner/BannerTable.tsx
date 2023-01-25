@@ -4,7 +4,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
 
-export default function BannerTable({ banners, deleteBanner }: any) {
+export default function BannerTable({ banners, deleteBanner, currentCount }: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2 ">
@@ -24,7 +24,7 @@ export default function BannerTable({ banners, deleteBanner }: any) {
               <tr
                 key={index}
                 className="customPrimaryTxtColor custom_table_hover ">
-                <th scope="row">{index + 1}</th>
+                <th scope="row">{currentCount - 5 + index + 1}</th>
                 <td>
                   <a
                     className="d-flex "

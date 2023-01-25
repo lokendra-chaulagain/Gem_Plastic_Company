@@ -4,7 +4,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
 
-export default function ReviewTable({ deleteReview, reviews }: any) {
+export default function ReviewTable({ deleteReview, reviews,currentCount }: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2">
@@ -22,7 +22,7 @@ export default function ReviewTable({ deleteReview, reviews }: any) {
             {reviews &&
               reviews.map((review: any, index: any) => (
                 <tr className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>{review.name}</td>
                   <td>
                     <a

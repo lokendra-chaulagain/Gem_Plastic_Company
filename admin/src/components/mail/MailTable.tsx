@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
-export default function MailTable({ mails, deleteMail }: any) {
+export default function MailTable({ mails, deleteMail,currentCount }: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2">
@@ -25,7 +25,7 @@ export default function MailTable({ mails, deleteMail }: any) {
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                   <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>{mail.name}</td>
                   <td>{mail.email}</td>
                   <td>{mail.message}</td>

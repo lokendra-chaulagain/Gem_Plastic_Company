@@ -58,6 +58,7 @@ export default function EventBanner() {
         eventBanners={eventBanners}
         deleteEventBanner={deleteEventBanner}
         eventBannerTotalCount={eventBannerTotalCount}
+        currentCount={currentCount}
       />
       <div
         className="d-flex justify-content-end me-5"

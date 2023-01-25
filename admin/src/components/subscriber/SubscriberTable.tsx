@@ -2,14 +2,14 @@ import React from "react";
 import { MdDelete } from "react-icons/md";
 import { format } from "timeago.js";
 
-export default function SubscriberTable({ deleteSubscriber, subscribers }: any) {
+export default function SubscriberTable({ deleteSubscriber, subscribers, currentCount }: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>
             <tr className="customPrimaryTxtColor">
-              <th scope="col">S.N</th>
+              <th scope="col">I.D</th>
               <th scope="col">Email</th>
               <th scope="col">CreatedAt</th>
               <th scope="col">Actions</th>
@@ -21,7 +21,7 @@ export default function SubscriberTable({ deleteSubscriber, subscribers }: any) 
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>{subscriber.email}</td>
                   <td>{format(subscriber.createdAt)}</td>
 

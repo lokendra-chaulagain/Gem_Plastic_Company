@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 
-export default function StandardTable({ standards, deleteStandard }: any) {
+export default function StandardTable({ standards, deleteStandard, currentCount }: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2">
@@ -22,7 +22,7 @@ export default function StandardTable({ standards, deleteStandard }: any) {
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>{standard.title}</td>
                   <td>{standard.icon}</td>
                   <td>

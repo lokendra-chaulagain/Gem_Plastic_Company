@@ -47,7 +47,6 @@ function Review() {
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
@@ -90,6 +89,7 @@ function Review() {
         reviews={reviews}
         setIsUpdated={setIsUpdated}
         reviewTotalCount={reviewTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

@@ -4,11 +4,9 @@ import { MdDelete } from "react-icons/md";
 import { AiTwotoneEdit } from "react-icons/ai";
 import Image from "next/image";
 
-export default function AllProductsTable({ products, deleteProduct, productTotalCount }: any) {
+export default function AllProductsTable({ products, deleteProduct, productTotalCount,currentCount }: any) {
   return (
     <>
-     
-
       <div className="customCard mt-2 mb-2">
         <table className="table  ">
           <thead>
@@ -31,7 +29,7 @@ export default function AllProductsTable({ products, deleteProduct, productTotal
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                  <th scope="row">{currentCount - 8 + index + 1}</th>
                   <td>{product.name}</td>
                   <td>
                     <a

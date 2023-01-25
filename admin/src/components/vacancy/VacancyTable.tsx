@@ -6,7 +6,7 @@ import { format } from "timeago.js";
 import Image from "next/image";
 import parse from "html-react-parser";
 
-export default function VacancyTable({ vacancies, deleteVacancy }: any) {
+export default function VacancyTable({ vacancies, deleteVacancy ,currentCount}: any) {
   return (
     <>
       <div className="customCard mt-2 mb-2 ">
@@ -30,7 +30,7 @@ export default function VacancyTable({ vacancies, deleteVacancy }: any) {
                 <tr
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
-                  <th scope="row">{index + 1}</th>
+                 <th scope="row">{currentCount - 5 + index + 1}</th>
                   <td>{vacancy.position}</td>
                   <td>
                     <a

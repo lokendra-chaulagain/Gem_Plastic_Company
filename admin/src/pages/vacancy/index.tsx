@@ -96,6 +96,7 @@ function Vacancy() {
         vacancies={vacancies}
         setIsUpdated={setIsUpdated}
         deleteVacancy={deleteVacancy}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

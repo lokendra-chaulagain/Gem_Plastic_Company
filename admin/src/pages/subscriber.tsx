@@ -16,8 +16,6 @@ function Subscriber() {
 
   const [searchInput, setSearchInput] = useState("");
   const [sort, setSort] = useState("latest");
-  console.log(searchInput);
-  console.log(sort);
 
   const deleteSubscriber = async (id: any) => {
     try {
@@ -53,7 +51,7 @@ function Subscriber() {
 
   useEffect(() => {
     fetchAllSubscriber();
-  }, [isUpdated, page,searchInput,sort]);
+  }, [isUpdated, page, searchInput, sort]);
 
   return (
     <>
@@ -88,6 +86,7 @@ function Subscriber() {
         deleteSubscriber={deleteSubscriber}
         subscribers={subscribers}
         subscriberTotalCount={subscriberTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

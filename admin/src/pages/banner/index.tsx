@@ -65,7 +65,7 @@ export default function Banner() {
           type="text"
           className="form-control w-50 custom_input_search"
           id="searchInput"
-          placeholder="Search By Email"
+          placeholder="Search By Title"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
@@ -90,6 +90,7 @@ export default function Banner() {
         banners={banners}
         deleteBanner={deleteBanner}
         bannerTotalCount={bannerTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">

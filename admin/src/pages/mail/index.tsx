@@ -87,6 +87,7 @@ function Mail() {
         mails={mails}
         deleteMail={deleteMail}
         mailTotalCount={mailTotalCount}
+        currentCount={currentCount}
       />
       <div className="d-flex justify-content-end me-5">
         <nav aria-label="Page navigation example">
