@@ -42,8 +42,8 @@ export default function BannerTable({ banners, deleteBanner, currentCount }: any
                     </div>
                   </a>
                 </td>
-                <td>{banner.title}</td>
-                <td>{banner.description}</td>
+                <td>{banner.title.substring(0,30)}</td>
+                <td>{banner.description.substring(0,40)}</td>
                 {banner.status == 1 && <td className="active_status_green_color">Active</td>}
                 {banner.status == 0 && <td className="active_status_red_color">InActive</td>}
                 <td>

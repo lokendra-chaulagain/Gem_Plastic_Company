@@ -22,7 +22,7 @@ export default function SubscriberTable({ deleteSubscriber, subscribers, current
                   key={index}
                   className="customPrimaryTxtColor custom_table_hover ">
                   <th scope="row">{currentCount - 5 + index + 1}</th>
-                  <td>{subscriber.email}</td>
+                  <td>{subscriber.email.substring(0,34)}</td>
                   <td>{format(subscriber.createdAt)}</td>
 
                   <td>

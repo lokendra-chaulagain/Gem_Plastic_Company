@@ -11,6 +11,8 @@ import { HiTemplate } from "react-icons/hi";
 import { GrMail } from "react-icons/gr";
 import { FaSitemap } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import axios from "axios";
 
 const Navbar = () => {
@@ -112,9 +114,24 @@ const Navbar = () => {
           <Link href={"/contact"}>
             <a
               type="button"
-              className={`${route == "contact" ? styles.nav_active : styles.nav_link} ps-3`}>
+              className={`${route == "contact" ? styles.nav_active : styles.nav_link} ps-3 pe-3`}>
               Contact
             </a>
+          </Link>
+
+          <Link href={"/login"}>
+            <a
+              type="button"
+              className={`${route == "login" ? styles.nav_active : styles.nav_link} ps-3 pe-3`}>
+              Login
+            </a>
+          </Link>
+
+          <Link href={"/cart"}>
+            <AiOutlineShoppingCart
+              className={`${route == "cart" ? styles.nav_active : styles.nav_link}  cp`}
+              size={27}
+            />
           </Link>
         </div>
         <button

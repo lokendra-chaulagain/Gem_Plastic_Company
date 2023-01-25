@@ -1,12 +1,11 @@
 import { Router } from "express";
 const router = Router();
 import { createStandard, deleteStandard, getAllStandard, getStandardById, updateStandard } from "../controllers/standard.controller.js";
-import { verifyToken } from "../controllers/user.controller.js";
 
-router.post("/",verifyToken, createStandard);
-router.put("/:id",verifyToken, updateStandard);
+router.post("/", createStandard);
+router.put("/:id", updateStandard);
 router.get("/:id", getStandardById);
 router.get("/", getAllStandard);
-router.delete("/:id",verifyToken, deleteStandard);
+router.delete("/:id", deleteStandard);
 
 export default router;

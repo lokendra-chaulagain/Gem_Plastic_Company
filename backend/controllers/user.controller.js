@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+// import EmailToken from "../models/EmailToken.js";
+// import sendEmail from "../utils/sendEmail.js";
 
 const getUser = async (req, res) => {
   try {
@@ -16,7 +18,6 @@ const getUser = async (req, res) => {
     console.log(error);
   }
 };
-
 
 const registerUser = async (req, res) => {
   try {
@@ -44,6 +45,39 @@ const registerUser = async (req, res) => {
     console.log(error);
   }
 };
+
+// const registerUser = async (req, res) => {
+//   try {
+//     let user = await User.findOne({ email: req.body.email });
+//     if (user) {
+//       res.status(409).json({
+//         error: true,
+//         message: "User already exist with this Email",
+//       });
+//     } else {
+//       const salt = await bcrypt.genSalt(10);
+//       const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+//       const createdUser = await new User({
+//         fullName: req.body.fullName,
+//         email: req.body.email,
+//         password: hashedPassword,
+//       }).save();
+
+//       const token = await new EmailToken({
+//         userId: createdUser._id,
+//         token: crypto.randomBytes(32).toString("hex"),
+//       }).save();
+//       const url = `${process.env.BASE_URL}/users/${createdUser._id}/verify/${token.token}`;
+//       await sendEmail(createdUser.email, "Verify Email", url);
+
+//       const { password, ...data } = createdUser.toJSON();
+//       res.status(201).json({ message: "Email sent to your account please verify", data });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const loginUser = async (req, res) => {
   try {
@@ -114,4 +148,26 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, deleteUser, logoutUser, verifyToken ,getUser};
+//verify email route
+
+// const emailVerifyRoute = async (req, res) => {
+//   try {
+//     const user = await User.findOne({ _id: req.params.id });
+//     if (!user) return res.status(400).send({ message: "Invalid link" });
+
+//     const token = await EmailToken.findOne({
+//       userId: user._id,
+//       token: req.params.token,
+//     });
+//     if (!token) return res.status(400).send({ message: "Invalid link" });
+
+//     await User.updateOne({ _id: user._id, verified: true });
+//     await token.remove();
+
+//     res.status(200).send({ message: "Email verified successfully" });
+//   } catch (error) {
+//     res.status(500).send({ message: "Internal Server Error" });
+//   }
+// };
+
+export { registerUser, loginUser, deleteUser, logoutUser, getUser };

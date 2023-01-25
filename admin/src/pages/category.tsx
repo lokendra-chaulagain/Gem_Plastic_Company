@@ -15,7 +15,6 @@ function Category() {
   const deleteCategory = async (id: any) => {
     try {
       let res = await CallApi.deleteData(`category/${id}`);
-
       setIsUpdated(1);
       deleteSuccess();
       console.log("Category deleted success");
@@ -28,7 +27,6 @@ function Category() {
   const deleteSize = async (id: any) => {
     try {
       let res = await CallApi.deleteData(`size/${id}`);
-
       setIsUpdated(2);
       deleteSuccess();
       console.log("Size deleted success");
@@ -41,7 +39,6 @@ function Category() {
   const deleteColor = async (id: any) => {
     try {
       let res = await CallApi.deleteData(`color/${id}`);
-
       setIsUpdated(3);
       deleteSuccess();
       console.log("color deleted success");
@@ -59,7 +56,6 @@ function Category() {
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
@@ -71,7 +67,6 @@ function Category() {
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 
@@ -83,7 +78,6 @@ function Category() {
       setIsUpdated(0);
     } catch (error) {
       console.log(error);
-      somethingWentWrong();
     }
   };
 

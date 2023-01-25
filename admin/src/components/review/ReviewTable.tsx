@@ -41,7 +41,7 @@ export default function ReviewTable({ deleteReview, reviews,currentCount }: any)
                       </div>
                     </a>
                   </td>
-                  <td>{review.description}</td>
+                  <td>{review.description.substring(0,40)}</td>
 
                   <td>
                     <div className="d-flex ">

@@ -617,3 +617,83 @@ button:focus {
   -ms-user-select: none;
   user-select: none;
 }
+
+.rectangular_product_card {
+  border: 1px solid grey;
+  transition: all 250ms ease-in-out;
+}
+
+.rectangular_product_card:hover {
+  border: 1px solid var(--color-yellow);
+}
+
+.checkout_button {
+  color: var(--color-white) !important;
+  background-color: var(--color-yellow) !important;
+}
+
+.cp_hover {
+  cursor: pointer !important;
+  transition: all 200ms ease-in-out;
+}
+.cp_hover:hover {
+  color: orange !important;
+}
+
+.checkout_input {
+  box-shadow: none !important;
+}
+.checkout_input:focus {
+  border-color: var(--color-yellow) !important;
+}
+
+.select_size_input_custom {
+  height: 25px !important;
+  width: 25px !important;
+  border-radius: 0% !important;
+  box-shadow: none !important;
+  border-color: none !important;
+  cursor: pointer;
+}
+
+.select_size_input_custom:focus {
+  background-color: var(--color-orange) !important;
+  border-color: var(--color-orange) !important;
+}
+.select_size_input_custom:checked {
+  background-color: var(--color-orange) !important;
+  border-color: var(--color-orange) !important;
+}
+
+.select_size_input_custom_label {
+  font-size: 20px !important;
+  padding-left: 7px;
+  padding-right: 15px;
+}
+
+.select_color_input_custom {
+  padding: 10px !important;
+  background-color: var(--color-white) !important;
+  box-shadow: none !important;
+  border-color: none !important;
+  cursor: pointer;
+}
+
+.select_color_input_custom:focus {
+  background-color: var(--color-yellow) !important;
+  border-color: var(--color-yellow) !important;
+}
+.select_color_input_custom:checked {
+  background-color: var(--color-yellow) !important;
+  border-color: var(--color-yellow) !important;
+}
+
+.select_size_input_custom_label {
+  font-size: 20px !important;
+  padding-left: 7px;
+  padding-right: 15px;
+}
+
+.cp {
+  cursor: pointer !important;
+}

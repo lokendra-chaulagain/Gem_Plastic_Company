@@ -51,7 +51,7 @@ export default function CategoryTable({ deleteCategory, categories, setIsUpdated
                     </a>
                   </td>
 
-                  <td>{category.description}</td>
+                  <td>{category.description.substring(0,30)}</td>
 
                   <td>
                     <MdDelete

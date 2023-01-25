@@ -3,7 +3,7 @@ import React from "react";
 const FilterSection = ({ colors, sizes, categories }: any) => {
   return (
     <div className="filter_section_wrapper container">
-      {/* <div className="search_container row d-flex my-4">
+      <div className="search_container row d-flex my-4">
         <input
           type="email"
           className="col form-control form_select_filter"
@@ -15,7 +15,7 @@ const FilterSection = ({ colors, sizes, categories }: any) => {
           className="col-2 btn filter_search_button">
           Search
         </button>
-      </div> */}
+      </div>
 
       <div className="drop_select_row d-flex row gap-2">
         <div className="col p-0 category_select_drop">
